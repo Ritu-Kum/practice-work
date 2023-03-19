@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <title>Form-Validatio</title>
+    
+</head>
+<body>
+    <div class="container bg-light p-3">
+        <div class="text-center p-1 mb-4 bg-warning"><h2>FORM</h2></div>
+        <form action="" name="myform" onsubmit="return formvalidation()">
+            <div class="row form-group">
+                <div class="col-sm-3">
+                    <label for="name">Name:</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="name">
+                    <div class="text-danger name-error"></div>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-3">
+                    <label for="address">Address:</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="address">
+                    <div class="text-danger address-error"></div>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-3">
+                    <label for="mobile">Mobile Number:</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="mobile">
+                    <div class="text-danger mobile-error"></div>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-sm-3">
+                    <label for="college">College:</label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="college">
+                    <div class="text-danger college-error"></div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-primary">Add/Update</button>
+            </div>
+
+        </form>
+    </div>
+    <hr>
+    <div class="container p-0 bg-dark">
+        <div class="mb-4 p-2 bg-warning"><h3>Form Details:-</h2></div>
+        <div class="row pb-4 text-light">
+            <div class="col-sm-3 ml-3">
+                <div>Name:</div>
+                <div>Address:</div>
+                <div>Mobile Number:</div>
+                <div>College:</div>
+            </div>
+            <div class="col-sm-5">
+                <div id="name1"></div>
+                <div id="address1"></div>
+                <div id="mobile1"></div>
+                <div id="college1"></div>
+            </div>
+            <div class="col-sm-3">
+                <button onclick="editdata()" class="btn btn-primary">Edit</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function clearerror(){
+            let error = document.getElementsByClassName('text-danger')
+            for(let item of error){
+                item.innerHTML = ""
+            }
+        }
+
+        function printdata(uname="",uaddress="",umobile="",ucollege=""){
+            document.getElementById('name1').innerHTML = uname
+            document.getElementById('address1').innerHTML = uaddress 
+            document.getElementById('mobile1').innerHTML = umobile
+            document.getElementById('college1').innerHTML = ucollege
+        }
+
+        function editdata(){
+            printdata()
+            document.getElementById('name').value = ""
+            document.getElementById('address').value = ""
+            document.getElementById('mobile').value = ""
+            document.getElementById('college').value = ""
+        }
+
+        function formvalidation(){
+            clearerror();
+
+            let [unameflag,uaddressflag,umobileflag,ucollegeflag] = [true,true,true,true]
+
+            let username = document.getElementById('name').value;
+            if(username === " " || username.length === 0){
+                document.querySelector(".name-error").innerHTML = "*Name should not be empty"
+                unameflag = false;
+            }
+
+            let useraddress = document.getElementById('address').value;
+            if(useraddress === " " || useraddress.length === 0){
+                document.querySelector(".address-error").innerHTML = "*Address should not be empty"
+                uaddressflag = false;
+            }
+
+            let usermobile = document.getElementById('mobile').value;
+            if(usermobile.length != 10){
+                document.querySelector(".mobile-error").innerHTML = "*Please enter valid mobile number"
+                umobileflag = false;
+            }
+
+            let usercollege = document.getElementById('college').value;
+            if(usercollege === " " || usercollege.length === 0){
+                document.querySelector(".college-error").innerHTML = "*College should not be empty"
+                ucollegeflag = false;
+            }
+
+            if(unameflag && uaddressflag && umobileflag && ucollegeflag){
+                printdata(username,useraddress,usermobile,usercollege)
+            }
+           
+
+           return false
+        }
+    </script>
+
+</body>
+</html>
