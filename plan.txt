@@ -1,0 +1,5 @@
+    Create npm project.
+2.  Create Index, CSS, Js file.
+3.  Install Dependencies, express, nodemon(devdep).
+4.  Create a express server [server.js].
+5.  do frontend part.
