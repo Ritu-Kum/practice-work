@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+
+import { ThemeProvider, createTheme, StyledEngineProvider, } from '@mui/material/styles';
+import { CssBaseline } from "@mui/material";
+import Footer from './component/Footer';
+import Header from './component/Header';
+import Home from './component/Home';
+
+// import getDarkTheme from "./theme/dark";
+import getLightTheme from "./theme/light";
+
+
 
 function App() {
+  let selectTheme = getLightTheme();
+  const theme = createTheme(selectTheme);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+       <div className="mainContainer">
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            < Header />
+            < Home />
+            < Footer />
+          </ThemeProvider>
+        </StyledEngineProvider>
+      </div>
+    </>
   );
 }
 
 export default App;
+
+
